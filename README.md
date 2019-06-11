@@ -7,7 +7,7 @@ This is a implementation of API using Lumen, Doctrine, Migrations, Swagger, and 
 This project use docker-compose.
  
 ```bash
-$ git clone git@github.com:mirandawork/lumen-api.git
+$ git clone https://github.com/mirandawork/lumen-api.git
 $ cd lumen-api
 $ docker-compose up --build
 ```
