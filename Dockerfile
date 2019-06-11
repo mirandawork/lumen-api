@@ -9,7 +9,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin \
     && php -r "unlink('composer-setup.php');"
 
-RUN usermod -u 1000 www-data 
+RUN usermod -u 1000 www-data
+RUN mkdir /var/www/.composer && chown www-data:www-data /var/www/.composer/
 USER www-data
 
 
