@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  ingress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: nginx-local
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: php-local
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/var/www/html
+
+  postgres:
+    image: postgres:11.3-alpine
+    environment:
+      POSTGRES_USER: vuttr
+      POSTGRES_PASSWORD: vuttrpass
+      POSTGRES_DB: vuttr
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+

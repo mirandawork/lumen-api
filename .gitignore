@@ -1,0 +1,5 @@
+backend/vendor
+backend/.idea
+backend/Homestead.json
+backend/Homestead.yaml
+backend/.env

@@ -1,0 +1,186 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api VUTTR (Very Useful Tools to Remember)",
+        "contact": {
+            "email": "andre@miranda.work"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/v1/tools": {
+            "get": {
+                "summary": "List all tools",
+                "description": "Create a new tool and tags if not exists.<br> Tools with the repeated title are not accepted. ",
+                "operationId": "list",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "property": null,
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/tool"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new tool",
+                "description": "Create a new tool and tags if not exists.",
+                "operationId": "create",
+                "requestBody": {
+                    "description": "Create tool object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/tool"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/tool"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "The request is well formed but disabled to be followed due to semantic errors.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "property": null,
+                                    "properties": {
+                                        "<field>": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/tools/{id}": {
+            "get": {
+                "summary": "Get a tool by id",
+                "description": "Get a tool by id.",
+                "operationId": "get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID from the tool",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "property": null,
+                                    "$ref": "#/components/schemas/tool"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tool not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a tool by id",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID from the tool",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The request is well formed but disabled to be followed due to semantic errors.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "tag": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tool": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
