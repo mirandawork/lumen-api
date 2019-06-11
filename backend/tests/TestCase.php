@@ -10,7 +10,6 @@ abstract class TestCase extends Laravel\Lumen\Testing\TestCase
     {
         parent::setUp();
         $this->runDatabaseMigrations();
-        $this->artisan('doctrine:migrations:migrate');
     }
 
     /**
