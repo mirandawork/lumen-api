@@ -1,7 +1,7 @@
 FROM php:7.3.6-fpm-stretch AS php-local
 
 RUN apt-get update \
-    && apt-get install libpq-dev -y \
+    && apt-get install git unzip libpq-dev -y \
     && docker-php-ext-install -j$(nproc) pdo pdo_pgsql
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
