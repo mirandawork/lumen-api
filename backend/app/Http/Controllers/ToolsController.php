@@ -35,6 +35,16 @@ class ToolsController extends Controller
      *     summary="List all tools",
      *     description="Create a new tool and tags if not exists.<br> Tools with the repeated title are not accepted. ",
      *     operationId="list",
+     *     @OA\Parameter(
+     *       name="tag",
+     *       in="query",
+     *       required=false,
+     *       description="List tools by the tag",
+     *       @OA\Schema(
+     *         type="string",
+     *         format="string"
+     *       )
+     *     ),
      *     @OA\Response(
      *       response="200",
      *       description="Success",

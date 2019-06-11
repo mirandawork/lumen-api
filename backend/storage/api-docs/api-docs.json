@@ -13,6 +13,18 @@
                 "summary": "List all tools",
                 "description": "Create a new tool and tags if not exists.<br> Tools with the repeated title are not accepted. ",
                 "operationId": "list",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "List tools by the tag",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
