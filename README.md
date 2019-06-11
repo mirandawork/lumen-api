@@ -29,6 +29,11 @@ Run phpunit inside the backend(php-fpm) container.
 $ ./vendor/bin/phpunit
 ```
 
+Run migrations after the phpunit because the database is reset.
+```bash
+$ php artisan doctrine:migrations:migrate
+```
+
 The [swagger ui](http://localhost:3000/api/documentation) is located in [http://localhost:3000/api/documentation](http://localhost:3000/api/documentation).
 
 The [swagger.json]((http://localhost:3000/docs)) can be view in [http://localhost:3000/docs](http://localhost:3000/docs). 
