@@ -48,7 +48,7 @@ class Tool implements Arrayable
     protected $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="tools", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="tools", cascade={"persist"})
      * @ORM\JoinTable(name="tools_tags")
      * @OA\Property(type="array", @OA\Items(type="string"))
      * @var App\Entities\Tag[]
